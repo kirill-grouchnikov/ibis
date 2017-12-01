@@ -342,7 +342,6 @@ abstract class SvgBatikIcon extends UserAgentAdapter implements Icon {
 	 * @param l
 	 *            Listener to add.
 	 */
-	@SuppressWarnings("unchecked")
 	public void addGVTTreeRendererListener(GVTTreeRendererListener l) {
 		listeners.add(l);
 	}
