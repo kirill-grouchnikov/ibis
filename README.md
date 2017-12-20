@@ -12,7 +12,7 @@ Ibis transcoder allows you to convert an SVG source into a corresponding Java cl
 
 * `SvgTranscoderTemplatePlain.templ` - creates a class with a static method to paint the icon content onto the passed `Graphics2D` object. The class also has methods to query the bounding box of the original SVG content.
 * `SvgTranscoderTemplateResizable.templ` - creates a class that implements [Flamingo](https://github.com/kirill-grouchnikov/flamingo)'s `ResizableIcon` interface. An instance of the generated class can be passed to any relevant Flamingo API, including the matching command button and ribbon calls. At runtime, Flamingo will automatically reconfigure the content based on the new display size of the icon. One of the use cases is ribbon resize that may involve a number of command buttons going between smaller and larger icon sizes. It is recommended to use the generated static `of(int, int)` method to obtain an instance of a generated class for the specific initial size.
-* `SvgTranscoderTemplateSubstance.templ` - creates a class that implements [Substance](https://github.com/kirill-grouchnikov/flamingo) interfaces for resizable icons that are automatically scaled on high-DPI screens. It is recommended to use the generated static `of(int, int)` and `uiResourceOf` methods to obtain an instance of a generated class for the specific initial size. While not strictly required, such instances can be used directly in custom Substance icon packs configured with the `SubstanceCortex.GlobalScope.setIconPack` API.
+* `SvgTranscoderTemplateSubstance.templ` - creates a class that implements [Substance](https://github.com/kirill-grouchnikov/flamingo) interfaces for resizable icons that are automatically scaled on high-DPI screens. It is recommended to use the generated static `of(int, int)` and `uiResourceOf(int, int)` APIs to obtain an instance of a generated class for the specific initial size. While not strictly required, such instances can be used directly in custom Substance icon packs configured with the `SubstanceCortex.GlobalScope.setIconPack` API.
 
 The `org.pushingpixels.ibis.SvgBatchConverter` class is the entry point into the offline batch converter pipeline. It has the following parameters:
 
@@ -47,4 +47,4 @@ Note that while `SvgBatikResizableIcon`'s primary intent is to be used with Flam
 If your app needs to track the loading of the SVG content, you can use the following APIs on the `SvgBatikResizableIcon` class:
 
 * `isLoading()` API to query whether the content loading has been completed
-* `addAsynchronousLoadListener(AsynchronousLoadListener)` to be notified on content load completion
+* `addAsynchronousLoadListener(AsynchronousLoadListener)` API to be notified on content load completion
