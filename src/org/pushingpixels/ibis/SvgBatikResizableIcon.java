@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2017 Ibis Kirill Grouchnikov. All Rights Reserved.
+ * Copyright (c) 2005-2018 Ibis Kirill Grouchnikov. All Rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
  * modification, are permitted provided that the following conditions are met:
@@ -192,35 +192,17 @@ public class SvgBatikResizableIcon extends SvgBatikIcon implements
 		});
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.jvnet.flamingo.common.icon.ResizableIcon#setDimension(java.awt.Dimension
-	 * )
-	 */
+	@Override
 	public void setDimension(Dimension dim) {
 		this.setPreferredSize(dim);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.jvnet.flamingo.common.AsynchronousLoading#addAsynchronousLoadListener
-	 * (org.jvnet.flamingo.common.AsynchronousLoadListener)
-	 */
+    @Override
 	public void addAsynchronousLoadListener(AsynchronousLoadListener l) {
 		listenerList.add(AsynchronousLoadListener.class, l);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.jvnet.flamingo.common.AsynchronousLoading#removeAsynchronousLoadListener
-	 * (org.jvnet.flamingo.common.AsynchronousLoadListener)
-	 */
+    @Override
 	public void removeAsynchronousLoadListener(AsynchronousLoadListener l) {
 		listenerList.remove(AsynchronousLoadListener.class, l);
 	}
@@ -261,11 +243,6 @@ public class SvgBatikResizableIcon extends SvgBatikIcon implements
 		}
 	};
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.jvnet.flamingo.common.AsynchronousLoading#isLoading()
-	 */
 	@Override
 	public synchronized boolean isLoading() {
 		String cacheKey = this.getIconWidth() + ":" + this.getIconHeight();
