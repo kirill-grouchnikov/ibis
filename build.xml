@@ -56,7 +56,7 @@
 	<property name="ibis.versionKey" value="1.0.00dev Acorn" />
 
 	<property name="flamingo.basedir" value="${module.ibis.basedir}/../flamingo" />
-    <property name="flamingo.version" value="6.0.00-dev" />
+    <property name="flamingo.version" value="5.3.00-dev" />
 
 	<path id="ibis.module.bootclasspath">
 		<!-- Paths to be included in compilation bootclasspath -->

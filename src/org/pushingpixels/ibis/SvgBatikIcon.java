@@ -135,9 +135,9 @@ abstract class SvgBatikIcon extends UserAgentAdapter implements Icon {
 		 */
 		private BufferedImage bufferedImage;
 		
-		private int scaleFactor;
+		private double scaleFactor;
 		
-		public BufferedImageTranscoder(int scaleFactor) {
+		public BufferedImageTranscoder(double scaleFactor) {
 			this.scaleFactor = scaleFactor;
 		}
 
@@ -221,11 +221,11 @@ abstract class SvgBatikIcon extends UserAgentAdapter implements Icon {
 		BufferedImage image = this.cachedImages.get(this.getIconWidth() + ":"
 				+ this.getIconHeight());
 		if (image != null) {
-			int scaleFactor = UIUtil.getScaleFactor();
-			int dx = (this.width - image.getWidth() / scaleFactor) / 2;
-			int dy = (this.height - image.getHeight() / scaleFactor) / 2;
-			g.drawImage(image, x + dx, y + dy, image.getWidth() / scaleFactor,
-					image.getHeight() / scaleFactor, null);
+		    double scaleFactor = UIUtil.getScaleFactor();
+			int dx = (int) ((this.width - image.getWidth() / scaleFactor) / 2);
+			int dy = (int) ((this.height - image.getHeight() / scaleFactor) / 2);
+			g.drawImage(image, x + dx, y + dy, (int) (image.getWidth() / scaleFactor),
+					(int) (image.getHeight() / scaleFactor), null);
 		}
 	}
 
@@ -300,7 +300,7 @@ abstract class SvgBatikIcon extends UserAgentAdapter implements Icon {
 					fireEvent(startedDispatcher, ev);
 
 					BufferedImageTranscoder t = 
-							new BufferedImageTranscoder(UIUtil.getScaleFactor());
+							new BufferedImageTranscoder((float) UIUtil.getScaleFactor());
 					if (renderWidth != 0 && renderHeight != 0) {
 						t.setDimensions(renderWidth, renderHeight);
 					}
