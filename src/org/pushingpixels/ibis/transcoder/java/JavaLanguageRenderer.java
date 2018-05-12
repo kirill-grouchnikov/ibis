@@ -27,65 +27,63 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
-package org.pushingpixels.ibis;
+package org.pushingpixels.ibis.transcoder.java;
 
-import java.io.BufferedInputStream;
-import java.io.InputStream;
+import org.pushingpixels.ibis.transcoder.LanguageRenderer;
 
-import org.apache.batik.gvt.GraphicsNode;
-import org.apache.batik.transcoder.SVGAbstractTranscoder;
-import org.apache.batik.transcoder.TranscoderInput;
+public class JavaLanguageRenderer implements LanguageRenderer {
+    @Override
+    public String getStatementEnd() {
+        return ";";
+    }
+    
+    @Override
+    public String getObjectCreation(String className) {
+        return "new " + className;
+    }
+    
+    @Override
+    public String getObjectCreationNoParams(String className) {
+        return "new " + className + "()";
+    }
+    
+    @Override
+    public String getObjectCast(String objectName, String classToCastTo) {
+        return "((" + classToCastTo + ")" + objectName + ")";
+    }
 
-/**
- * SVG to Java2D transcoder.
- * 
- * @author Kirill Grouchnikov.
- */
-public class SvgStreamTranscoder extends SvgBaseTranscoder {
-	public static class RawTranscoder extends SVGAbstractTranscoder {
-		public GraphicsNode getGVTRoot() {
-			return this.root;
-		}
-	}
+    @Override
+    public String startPrimitiveArrayOf(String primitiveTypeName) {
+        return "new " + primitiveTypeName + "[] {";
+    }
+    
+    @Override
+    public String startGenericArrayOf(String className) {
+        return "new " + className + "[] {";
+    }
+    
+    @Override
+    public String endArray() {
+        return "}";
+    }
+    
+    @Override
+    public String startVariableDefinition(String variableTypeName) {
+        return variableTypeName + " ";
+    }
+    
+    @Override
+    public String startSetterAssignment(String propertyName) {
+        return ".set" + Character.toUpperCase(propertyName.charAt(0)) + propertyName.substring(1) + "(";
+    }
+    
+    @Override
+    public String endSetterAssignment() {
+        return ")";
+    }
 
-	/**
-	 * Input stream of the SVG image.
-	 */
-	protected InputStream is;
-
-	/**
-	 * Creates a new transcoder.
-	 * 
-	 * @param is
-	 *            Input stream of the SVG image.
-	 * @param javaClassname
-	 *            Classname for the generated Java2D code.
-	 */
-	public SvgStreamTranscoder(InputStream is, String javaClassname) {
-		super(javaClassname);
-		this.is = is;
-	}
-
-	/**
-	 * Transcodes the SVG image into Java2D code. Does nothing if the
-	 * {@link #listener} is <code>null</code>.
-	 */
-	public void transcode(InputStream templateStream) {
-		if (this.externalPrintWriter == null)
-			return;
-
-		// SvgStreamCanvas canvas = new SvgStreamCanvas();
-		RawTranscoder transcoder = new RawTranscoder();
-		BufferedInputStream bis = new BufferedInputStream(is);
-		TranscoderInput ti = new TranscoderInput(bis);
-
-		try {
-			transcoder.transcode(ti, null);
-			this.transcode(transcoder.getGVTRoot(), templateStream);
-		} catch (Exception exc) {
-			exc.printStackTrace();
-		} finally {
-			this.externalPrintWriter.close();
-		}
-	}
+    @Override
+    public String getGetter(String propertyName) {
+        return ".get" + Character.toUpperCase(propertyName.charAt(0)) + propertyName.substring(1) + "()";
+    }
 }

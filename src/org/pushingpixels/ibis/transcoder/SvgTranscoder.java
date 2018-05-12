@@ -27,7 +27,7 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
-package org.pushingpixels.ibis;
+package org.pushingpixels.ibis.transcoder;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -62,11 +62,11 @@ public class SvgTranscoder extends SvgBaseTranscoder {
 	 * 
 	 * @param uri
 	 *            URI of the SVG image.
-	 * @param javaClassname
+	 * @param classname
 	 *            Classname for the generated Java2D code.
 	 */
-	public SvgTranscoder(String uri, String javaClassname) {
-		super(javaClassname);
+	public SvgTranscoder(String uri, String classname, LanguageRenderer languageRenderer) {
+		super(classname, languageRenderer);
 		this.uri = uri;
 	}
 

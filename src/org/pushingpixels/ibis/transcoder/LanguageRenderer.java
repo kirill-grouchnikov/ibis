@@ -27,25 +27,28 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
-package org.pushingpixels.ibis;
+package org.pushingpixels.ibis.transcoder;
 
-import java.io.Writer;
+public interface LanguageRenderer {
+    public String getStatementEnd();
 
-/**
- * Transcoder listener.
- * 
- * @author Kirill Grouchnikov.
- */
-public interface TranscoderListener {
-	/**
-	 * Returns the writer for the Java2D contents.
-	 * 
-	 * @return Writer for the Java2D contents.
-	 */
-	public Writer getWriter();
+    public String getObjectCreation(String className);
 
-	/**
-	 * Called when the transcoding process is finished.
-	 */
-	public void finished();
+    public String getObjectCreationNoParams(String className);
+
+    public String getObjectCast(String objectName, String classToCastTo);
+
+    public String startPrimitiveArrayOf(String primitiveTypeName);
+
+    public String startGenericArrayOf(String className);
+
+    public String endArray();
+    
+    public String startVariableDefinition(String variableTypeName);
+    
+    public String startSetterAssignment(String propertyName);
+    
+    public String endSetterAssignment();
+    
+    public String getGetter(String propertyName);
 }

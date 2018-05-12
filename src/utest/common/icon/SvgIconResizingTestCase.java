@@ -41,7 +41,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.pushingpixels.flamingo.api.common.AsynchronousLoadListener;
 import org.pushingpixels.flamingo.api.common.AsynchronousLoading;
-import org.pushingpixels.ibis.SvgBatikResizableIcon;
+import org.pushingpixels.ibis.icon.SvgBatikResizableIcon;
 
 public class SvgIconResizingTestCase {
     protected SvgBatikResizableIcon icon;
